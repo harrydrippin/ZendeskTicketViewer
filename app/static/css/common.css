@@ -1,0 +1,23 @@
+html, body {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #555555;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.wrapper {
+  background-color: #FFFFFF;
+  margin-top: 30px;
+  background: #fff;
+  box-shadow:
+    0 -1px 1px rgba(0,0,0,0.15),
+    0 -10px 0 -5px #eee,
+    0 -10px 1px -4px rgba(0,0,0,0.15),
+    0 -20px 0 -10px #eee,
+    0 -20px 1px -9px rgba(0,0,0,0.15);
+    padding: 30px;
+}

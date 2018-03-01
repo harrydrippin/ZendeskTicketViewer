@@ -17,7 +17,9 @@ class CommandTest(Command):
         """
         Run test for this application.
         """
-        pass
+        import unittest
+        tests = unittest.TestLoader().discover('tests')
+        unittest.TextTestRunner(verbosity=2).run(tests)
 
 class CommandRun(Command):
     """Command for running this application."""
@@ -25,8 +27,17 @@ class CommandRun(Command):
         """
         Run this application.
         """
-        app.run()
+        app.run(host="0.0.0.0")
+
+class CommandDebug(Command):
+    """Command for debugging this application."""
+    def run(self):
+        """
+        Run this application with debug mode.
+        """
+        app.run(host="0.0.0.0", debug=True)
 
 manager.add_command('test', CommandTest)
 manager.add_command('run', CommandRun)
+manager.add_command('debug', CommandDebug)
 manager.run()
