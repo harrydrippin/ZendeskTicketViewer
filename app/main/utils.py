@@ -20,11 +20,33 @@ def fetch_ticket_details(ticket_id):
             + Config.link_ticket_detail.format(ticket_id=ticket_id)
     return requests.get(url, auth=BASIC_AUTH)
 
-def process_response(response):
-    """Extract information from fetched data."""
+def extract_requester(ticket):
+    """
+    Extract requester's name in ticket.
+    Returns bool for existance and string for requester's name.
+    """
+    via = ticket["via"]
+
+    rel_has_name = ["direct_message", "voicemail", "inbound", \
+                    "outbound", "post", "message"]
+
+    if via["channel"] == "email" or via["source"]["rel"] in rel_has_name:
+        return True, via["source"]["from"]["name"]
+    return False, str()
+
+def process_response(response, is_detail=True):
+    """
+    Extract information from fetched data.
+    If is_detail is true, analyze requester's name.
+    """
     detail = response.json()
 
     if response.status_code == 200:
+        if is_detail:
+            is_exist, requester = extract_requester(detail["ticket"])
+            detail["ticket"]["is_requester_exist"] = is_exist
+            detail["ticket"]["requester"] = requester
+
         return {
             "result": 0,
             "detail": detail
@@ -56,5 +78,5 @@ def process_response(response):
 
     return {
         "result": -1,
-        "error": "Unexpected error"
+        "error": detail["error"]["title"]
     }

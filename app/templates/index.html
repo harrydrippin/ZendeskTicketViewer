@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ticket List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  </head>
+  <body>
+    <div class="container wrapper">
+      <h1>Ticket Viewer</h1>
+      <hr>
+      <span><b>{{ total_count }}</b> total tickets, <b>{{ page_count }}</b> on this page</span><br>
+      <span class="info-signin">Signed in as {{ agent_email }}</span>
+      <hr>
+      <div class="ticket-wrapper">
+        {% for ticket in tickets %}
+        <a class="ticket-link" href="{{ ticket["link"] }}">
+          <div class="ticket">
+            <span class="badge badge-{{ badge_color[ticket["status"]] }}">{{ badge_code[ticket["status"]] }}</span>
+            <span class="ticket-title">{{ ticket["subject"] }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

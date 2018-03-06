@@ -1,5 +1,5 @@
 """
-Testcases for processing ticket detail.
+Testcases for processing ticket list and detail.
 """
 import unittest
 
@@ -12,6 +12,8 @@ class TicketProcessTests(unittest.TestCase):
         self.sample_ok = {
             "ticket": cases.generate_ticket(1, cases.STATUSES[0], cases.SOURCES[1])
         }
+        self.sample_ok["ticket"]["via"] = cases.VIA_TEMPLATES["email"]
+
         self.sample_ok_list = {
             "tickets": list()
         }
@@ -48,13 +50,19 @@ class TicketProcessTests(unittest.TestCase):
 
     def test_ok_list_result(self):
         """Should return 0 for result when response for list is ok"""
-        process_result = process_response(self.resp_ok_list)
+        process_result = process_response(self.resp_ok_list, is_detail=False)
         self.assertEqual(process_result["result"], 0)
 
     def test_ok_list_returned_tickets(self):
         """Should return original ticket list when response for list is ok"""
-        process_result = process_response(self.resp_ok_list)
+        process_result = process_response(self.resp_ok_list, is_detail=False)
         self.assertEqual(process_result["detail"], self.sample_ok_list)
+
+    def test_ok_has_requester(self):
+        """Should return requester information when response is ok"""
+        process_result = process_response(self.resp_ok)
+        self.assertEqual(process_result["detail"]["ticket"]["is_requester_exist"], True)
+        self.assertEqual(process_result["detail"]["ticket"]["requester"], "John Doe")
 
     def test_auth_failure_result(self):
         """Should return 1 for result when response has auth failure"""

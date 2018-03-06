@@ -21,11 +21,11 @@ ERROR_TEMPLATE = {
 
 VIA_TEMPLATES = {
     "email": {
-        "channel": "rule",
+        "channel": "email",
         "source": {
             "from": {
                 "address": "someone@hello.com",
-                "name": "Seunghwan Hong"
+                "name": "John Doe"
             },
             "to": {
                 "name": "Support Team",
@@ -35,16 +35,26 @@ VIA_TEMPLATES = {
         }
     },
     "twitter": {
-        "channel": "rule",
+        "channel": "twitter",
         "source": {
+            "from": {
+                "name": "John Doe",
+                "profile_url": "twitter.com/hello",
+                "username": "hello"
+            },
+            "to": {
+                "name": "Someone: to",
+                "profile_url": "twitter.com/world",
+                "username": "world"
+            },
             "rel": "direct_message"
         }
     },
     "facebook": {
-        "channel": "rule",
+        "channel": "facebook",
         "source": {
             "from": {
-                "name": "Someone: from",
+                "name": "John Doe",
                 "profile_url": "fb.com/hello",
                 "facebook_id": "1234321"
             },
@@ -57,7 +67,10 @@ VIA_TEMPLATES = {
         }
     },
     "none": {
-        "rel": None
+        "channel": "whatever",
+        "source": {
+            "rel": None
+        }
     }
 }
 

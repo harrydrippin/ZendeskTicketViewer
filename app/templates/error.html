@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ticket List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  </head>
+  <body>
+    <div class="container wrapper">
+      <h1>Ticket Viewer</h1>
+      <hr>
+      <h2>Error!</h2>
+      <p>
+        Error was occured during processing your request.<br>
+        Error detail: <code>{{ error }}</code>
+      </p>
+      <a href="/"><button type="button" class="btn btn-dark">Go to ticket list</button></a>
+    </div>
+
+  </body>
+</html>

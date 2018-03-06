@@ -19,5 +19,5 @@ class Config:
     agent_password = os.environ.get("ZENDESK_AGENT_PASSWORD")
 
     link_base = "https://{subdomain}.zendesk.com/api/v2"
-    link_tickets = "/tickets.json"
+    link_tickets = "/tickets.json?per_page=100"
     link_ticket_detail = "/tickets/{ticket_id}.json"

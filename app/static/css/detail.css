@@ -1,0 +1,15 @@
+.requested-by {
+  color: #ABABAB;
+}
+
+.ticket-title {
+  margin-top: 15px;
+}
+
+.ticket-status.open {
+  font-weight: bold;
+}
+
+.ticket-description {
+  margin-top: 20px;
+}

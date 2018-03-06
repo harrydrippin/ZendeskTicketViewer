@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ticket List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+  </head>
+  <body>
+    <div class="container wrapper">
+      <h1>Ticket Viewer</h1>
+      <hr>
+      <h4 class="ticket-title">{{ subject }}</h4>
+      {% if is_requester_exist %}
+      <span class="requested-by">Requester</span> {{ requester }}<br>
+      {% else %}
+      <span class="requested-by">No Requester Name</span><br>
+      {% endif %}
+      <span class="requested-by">Status</span> <span class="ticket-status">{{ status }}</span><br>
+
+      {% autoescape false %}
+      <p class="ticket-description">{{ description }}</p>
+      {% endautoescape %}
+      <hr>
+      <a href="/"><button type="button" class="btn btn-dark">Back to ticket list</button></a>
+    </div>
+
+  </body>
+</html>

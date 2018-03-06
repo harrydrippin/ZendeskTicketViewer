@@ -19,5 +19,9 @@ hr {
     0 -10px 1px -4px rgba(0,0,0,0.15),
     0 -20px 0 -10px #eee,
     0 -20px 1px -9px rgba(0,0,0,0.15);
-    padding: 30px;
+  padding: 30px;
+}
+
+a, button {
+  cursor: pointer;
 }
