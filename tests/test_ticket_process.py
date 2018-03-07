@@ -36,7 +36,12 @@ class TicketProcessTests(unittest.TestCase):
         self.resp_service_unavailable = MockResponse(dict(), 503, headers={
             "Retry-After": "1080"
         })
-        self.resp_unexpected_error = MockResponse(dict(), 500)
+        self.resp_unexpected_error = MockResponse({
+            "error": {
+                "title": "Title of this error",
+                "description": "Description of this error"
+            }
+        }, 500)
 
     def test_ok_result(self):
         """Should return 0 for result when response is ok"""
